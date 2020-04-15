@@ -1,55 +1,55 @@
 <template>
-  <div class="list-content">
-    <h4 class="list-title">
-      <span class="title-line"></span>
+  <div class="store-container">
+    <h4 class="store-title">
+      <span class="store-title-line"></span>
       <span>附近商家</span>
-      <span class="title-line"></span>
+      <span class="store-title-line"></span>
     </h4>
-    <div class="list-wrap">
-      <div class="r-item-content scale-1px"
+    <div class="store-warp">
+      <div class="store-content scale-1px"
         v-for="(item, index) in data"
         :key="'content' + index"
       >
-        <img :src="item.pic_url" class="item-img">
-        <div class="brand brand-pin" v-if="item.brand_type">品牌</div>
-        <div class="brand brand-xin" v-else>新到</div>
-        <div class="item-info-content">
-          <p class="item-title">{{item.name}}</p>
-          <div class="item-desc clearfix">
-            <div class="item-score">
-              <div class="star-score">
+        <img :src="item.pic_url" class="store-item-img">
+        <div class="store-brand store-brand-pin" v-if="item.brand_type">品牌</div>
+        <div class="store-brand store-brand-xin" v-else>新到</div>
+        <div class="store-item-info">
+          <p class="store-item-title">{{item.name}}</p>
+          <div class="store-item-desc clearfix">
+            <div class="store-score">
+              <div class="store-star-container">
                 <div
-                  class="star fullstar"
+                  class="store-star store-fullstar"
                   v-for="(star, i) in get_fullstar(item.wm_poi_score)"
                   :key="'fullstar'+i"
                 ></div>
                 <div
-                  class="star halfstar"
+                  class="store-star store-halfstar"
                   v-for="(star, i) in get_halfstar(item.wm_poi_score)"
                   :key="'halfstar'+i"
                 ></div>
                 <div
-                  class="star nullstar"
+                  class="store-star store-nullstar"
                   v-for="(star, i) in get_nullstar(item.wm_poi_score)"
                   :key="'nullstar'+i"
                 ></div>
               </div>
             </div>
-            <div class="item-count">月售{{item.month_sale_num > 999 ? '999+' : item.month_sale_num}}</div>
-            <div class="item-distance">{{item.distance}}</div>
-            <div class="item-time">{{item.mt_delivery_time}}</div>
+            <div class="store-count">月售{{item.month_sale_num > 999 ? '999+' : item.month_sale_num}}</div>
+            <div class="store-distance">{{item.distance}}</div>
+            <div class="store-time">{{item.mt_delivery_time}}</div>
           </div>
-          <div class="item-price">
-            <div class="item-pre-price">{{item.min_price_tip}}</div>
-            <div class="item-meituan-flag" v-if="item.delivery_type">美团专送</div>
+          <div class="store-item-price">
+            <div class="store-item-preprice">{{item.min_price_tip}}</div>
+            <div class="store-item-flag" v-if="item.delivery_type">美团专送</div>
           </div>
-          <div class="item-others">
-            <div class="other-info"
+          <div class="store-item-others">
+            <div class="store-other-info"
               v-for="(other, idx) in item.discounts2"
               :key="'other' + idx"
             >
-              <img :src="other.icon_url" class="other-tag">
-              <div class="other-content">{{other.info}}</div>
+              <img :src="other.icon_url" class="store-other-tag">
+              <div class="store-other-content">{{other.info}}</div>
             </div>
           </div>
         </div>
@@ -111,131 +111,137 @@
 </script>
 
 <style lang="scss" scoped>
-  .list-content {
+  @import '@/assets/scss/_mixins.scss';
+
+  .store-container {
     overflow: hidden;
     padding-bottom: 50px;
 
-    .list-title {
+    .store-title {
       text-align: center;
       font-size: 16px;
       margin-top: 14px;
       margin-bottom: 5px;
+
+      &-line {
+        display: inline-block;
+        border-bottom: 1px solid #949494;
+        height: 1px;
+        width: 30px;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-bottom: 4px;
+      }
     }
 
-    .title-line {
-      display: inline-block;
-      border-bottom: 1px solid #949494;
-      height: 1px;
-      width: 30px;
-      margin-left: 4px;
-      margin-right: 4px;
-      margin-bottom: 4px;
+    .store-content {
+      display: flex;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      margin-left: 10px;
+      margin-right: 10px;
+      color: #656565;
+
+      .store-item-img {
+        width: 86px;
+        height: 65px;
+        border: 1px solid #e4e4e4;
+      }
+      .store-item-info {
+        flex: 1;
+        margin-left: 7px;
+        overflow: hidden;
+      }
+      .store-brand {
+        position: absolute;
+        left: 1px;
+        top: 16px;
+        font-size: 12px;
+        padding: 2px;
+        color: #fff;
+      }
+      .store-brand-pin {
+        background-color: #ffa627;
+      }
+      .store-brand-xin {
+        background-color: #21c56c;
+      }
+      .store-item-title {
+        margin-top: 3px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+      }
+      .store-item-desc {
+        margin-top: 13px;
+        font-size: 12px;
+      }
+      .store-score {
+        float: left;
+      }
+      .store-count {
+        float: left;
+        margin-left: 5px;
+      }
+      .store-time {
+        float: right;
+      }
+      .store-distance {
+        float: right;
+      }
+      .store-item-price {
+        margin-top: 10px;
+        font-size: 12px;
+        height: 24px;
+      }
+      .store-item-flag {
+        float: right;
+        background-color: #ffd161;
+        color: #000;
+        padding: 3px;
+        border-radius: 3px;
+      }
+      .store-other-info {
+        color: #898989;
+        margin-top: 7px;
+        font-size: 12px;
+        display: flex;
+      }
+      .store-other-tag {
+        width: 14px;
+        height: 14px;
+      }
+      .store-other-content {
+        vertical-align: 3px;
+        margin-left: 3px;
+        height: 14px;
+        width: 230px;
+      }
+      .store-item-preprice {
+        float: left;
+      }
     }
-  }
+    .store-content:after {
+      // 因为每一个商家项目后面，都有一个伪类，是一根线，这里要给线添加上颜色
+      background-color: #e4e4e4;
+    }
 
-  .r-item-content {
-    display: flex;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: #656565;
-  }
-  .r-item-content:after {
-    background-color: #e4e4e4;
-  }
-  .r-item-content .item-img {
-    width: 86px;
-    height: 65px;
-    border: 1px solid #e4e4e4;
-  }
-  .r-item-content .item-info-content {
-    flex: 1;
-    margin-left: 7px;
-    overflow: hidden;
-  }
-  .r-item-content .brand {
-    position: absolute;
-    left: 1px;
-    top: 16px;
-    font-size: 12px;
-    padding: 2px;
-    color: #fff;
-  }
-  .r-item-content .brand-pin {
-    background-color: #ffa627;
-  }
-  .r-item-content .brand-xin {
-    background-color: #21c56c;
-  }
-  .r-item-content .item-title {
-    margin-top: 3px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-  }
-  .r-item-content .item-desc {
-    margin-top: 13px;
-    font-size: 12px;
-  }
-  .r-item-content .item-score {
-    float: left;
-  }
-  .r-item-content .item-count {
-    float: left;
-    margin-left: 5px;
-  }
-  .r-item-content .item-time {
-    float: right;
-  }
-  .r-item-content .item-distance {
-    float: right;
-  }
-  .r-item-content .item-price {
-    margin-top: 10px;
-    font-size: 12px;
-    height: 24px;
-  }
-  .r-item-content .item-meituan-flag {
-    float: right;
-    background-color: #ffd161;
-    color: #000;
-    padding: 3px;
-    border-radius: 3px;
-  }
-  .r-item-content .other-info {
-    color: #898989;
-    margin-top: 7px;
-    font-size: 12px;
-    display: flex;
-  }
-  .r-item-content .other-tag {
-    width: 14px;
-    height: 14px;
-  }
-  .r-item-content .other-content {
-    vertical-align: 3px;
-    margin-left: 3px;
-    height: 14px;
-    width: 230px;
-  }
-  .r-item-content .item-pre-price {
-    float: left;
-  }
-
-  .star-score .star {
-    width: 10px;
-    height: 10px;
-    float: left;
-    background-size: cover;
-  }
-  .star-score .fullstar {
-    background-image: url("./img/fullstar.png");
-  }
-  .star-score .halfstar {
-    background-image: url("./img/halfstar.png");
-  }
-  .star-score .nullstar {
-    background-image: url("./img/gray-star.png");
+    .store-star-container {
+      .store-star {
+        width: 10px;
+        height: 10px;
+        float: left;
+        background-size: cover;
+      }
+      .store-fullstar {
+        background-image: url("./img/fullstar.png");
+      }
+      .store-halfstar {
+        background-image: url("./img/halfstar.png");
+      }
+      .store-nullstar {
+        background-image: url("./img/gray-star.png");
+      }
+    }
   }
 </style>

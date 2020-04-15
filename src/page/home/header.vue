@@ -1,15 +1,15 @@
 <template>
   <div class="header">
-    <div class="search-bar">
-      <div class="bar-location">
-          <div class="location-icon"></div>
-          <div class="location-text">郑州市</div>
+    <div class="header-search">
+      <div class="header-location">
+          <div class="header-location-icon"></div>
+          <div class="header-location-text">郑州市</div>
       </div>
-      <div class="search-btn">
-          <p class="place-holder">鸡翅</p>
+      <div class="header-search-btn">
+          <p class="header-search-holder">鸡翅</p>
       </div>
     </div>
-    <img class="banner-img" :src="headerImg">
+    <img class="header-img" :src="headerImg">
   </div>
 </template>
 
@@ -29,26 +29,26 @@
   .header {
     position: relative;
 
-    .banner-img {
+    &-img {
       width: 100%;
       height: 178px;
     }
 
-    .search-bar {
+    &-search {
       width: 100%;
       height: 40px;
       position: absolute;
       @include flex-center();
       padding-top: 14px;
 
-      .bar-location {
+      .header-location {
         margin-right: 20px;
         border-radius: 13px;
         background-color: rgba(0, 0, 0, 0.33);
         height: 28px;
         width: 92px;
 
-        .location-icon {
+        &-icon {
           display: inline-block;
           width: 15px;
           height: 20px;
@@ -57,14 +57,14 @@
           background-image: url('img/locationIcon.png');
           background-size: cover;
         }
-        .location-text {
+        &-text {
           position: relative;
           display: inline-block;
           font-size: 14px;
           color: #fff;
           vertical-align: 15px;
         }
-        .location-text:after {
+        .header-location-text:after {
           content: '';
           display: block;
           position: absolute;
@@ -76,13 +76,13 @@
           top: 1px;
         }
       }
-      .search-btn {
+      &-btn {
         position: relative;
         width: 170px;
         height: 30px;
         background-color: #fff;
         border-radius: 0.5333333333rem;
-        .place-holder {
+        .header-search-holder {
           color: #a9a9a9;
           font-size: 14px;
           height: 100%;
@@ -90,7 +90,7 @@
           margin-left: 28px;
         }
       }
-      .search-btn:before {
+      .header-search-btn:before {
         content: '';
         display: block;
         position: absolute;

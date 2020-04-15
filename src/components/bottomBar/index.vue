@@ -43,7 +43,7 @@
     color: #000 !important;
   }
   .bottom-bar {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     z-index: 50;
     width: 100%;

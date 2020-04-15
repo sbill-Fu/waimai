@@ -4,8 +4,8 @@
       v-for="(item, index) in data"
       :key="'category'+index"
     >
-      <img :src="item.url" class="item-icon">
-      <p class="item-name">{{item.name}}</p>
+      <img :src="item.url" class="category-item-icon">
+      <p class="category-item-name">{{item.name}}</p>
     </div>
   </div>
 </template>
@@ -41,14 +41,15 @@
       padding-top: 14px;
       font-size: 13px;
       @include flex-center(column);
+
+      &-icon {
+        width: 47px;
+      }
+
+      &-name {
+        margin-top: 14px;
+      }
     }
 
-    .item-icon {
-      width: 47px;
-    }
-
-    .item-name {
-      margin-top: 14px;
-    }
   }
 </style>

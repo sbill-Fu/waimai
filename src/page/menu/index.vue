@@ -144,6 +144,7 @@
     flex: 1;
     margin-left: 10px;
     height: 100%;
+    padding-bottom: 50px;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
