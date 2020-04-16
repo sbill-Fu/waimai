@@ -12,25 +12,20 @@
     <div
       class="menu-inner"
     >
-        <div class="left-bar">
-          <left
-            ref="left"
-            @switch-tab="switchTab"
-            @foodDataGeted="dealFoodData"
-            @clearedcart="updateRight"
-          ></left>
-        </div>
+        <left
+          ref="left"
+          @switch-tab="switchTab"
+          @foodDataGeted="dealFoodData"
+          @clearedcart="updateRight"
+        ></left>
         <div class="right-content">
             <p ref="rightTitle" class="right-title">热销</p>
-            <div class="right-list">
-                <div class="right-list-inner">
-                  <right
-                    ref="right"
-                    @minusCount="minusCount"
-                    @addCount="addCount"
-                  ></right>
-                </div>
-            </div>
+              <right
+                ref="right"
+                @minusCount="minusCount"
+                @addCount="addCount"
+              >
+              </right>
         </div>
         <shop-bar
           :foodData="foodData"

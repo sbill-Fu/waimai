@@ -67,22 +67,7 @@
       forceUpdate() {
         this.$forceUpdate();
       }
-      // clearCart() {
-      //   this.data.forEach(item => {
-      //     item.chooseCount = 0;
-      //   });
-      //   this.forceUpdate();
-      // }
     }
-    // created() {
-    //   getFoodList().then(res => {
-    //     // 首次加载页面，右边要有值，所以请求一下数据，先把第一个 tab的内容给加载了
-    //     this.firstData = res.food_spu_tags[0].spus;
-    //     this.data = this.firstData;
-    //     console.log('right has get data');
-    //     // console.log('hi');
-    //   });
-    // }
   };
 </script>
 

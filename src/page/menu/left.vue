@@ -1,6 +1,6 @@
 <template>
   <div
-    class="left-bar-inner"
+    class="left-bar"
   >
     <div
       class="left-item"
@@ -51,8 +51,6 @@
       },
       clearCart() {
         console.log('left start clear');
-        // console.log(this.data[0]);
-        // console.log(this.data[0].spus[0]);
         this.data.forEach(item => {
           item.spus.forEach(_item => {
             if (_item.chooseCount > 0) {
@@ -64,13 +62,6 @@
         this.$emit('clearedcart');
       }
     }
-    // watch: {
-    // 想通过父组件传值过来，解决刷新组件，数据被覆盖掉的问题，放弃了，有点麻烦，又不会用 vuex 现在
-    //   jsonData(data) {
-    //     console.log('left has get');
-    //     this.data = data.food_spu_tags;
-    //   }
-    // }
   };
 </script>
 
@@ -82,7 +73,7 @@
     height: 100%;
     -webkit-overflow-scrolling: touch;
   }
-   .left-bar-inner {
+   .left-bar {
     padding-bottom: 85px;
   }
    .left-item {

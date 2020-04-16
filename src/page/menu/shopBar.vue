@@ -12,7 +12,7 @@
           class="choose-item"
         >
           <div class="item-name">{{item.name}}</div>
-          <div class="price">¥<span class="total">{{getPrice(item.min_price,item.chooseCount)}}</span></div>
+          <div class="price">¥<span class="total">{{getPrice(item)}}</span></div>
           <div class="select-content">
               <div @click="selfMinusCount(item, item.chooseCount)" class="minus"></div>
               <div ref="chooseCount" class="count">{{item.chooseCount}}</div>
@@ -52,12 +52,9 @@
         default: () => {}
       }
     },
-    created() {
-      console.log('created');
-    },
     methods: {
-      getPrice(price, count) {
-        var r = price * count;
+      getPrice(item) {
+        var r = item.min_price * item.chooseCount;
         return r;
       },
       minusCount(item, preChooseNum) {
