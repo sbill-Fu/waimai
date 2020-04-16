@@ -2,7 +2,7 @@
   <div class="personal">
         <!--头部栏-->
         <div class="personal-header">
-            <img class="personal-avatar" src="http://i.waimai.meituan.com/static/img/default-avatar.png"/>
+            <img class="personal-avatar" src="./img/avatar.png"/>
             <p class="personal-nickname">美团小骑手 &gt;</p>
         </div>
         <!--内容表单区域-->
