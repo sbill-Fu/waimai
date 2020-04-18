@@ -61,7 +61,7 @@
 
 <script>
   import {getContentList} from '@/api/content';
-  import loading from '@/components/loading';
+  import loading from '@/base/loading';
 
   export default {
     data() {
@@ -80,7 +80,9 @@
       getContentList().then(res => {
         setTimeout(() => {
           this.data = res;
+          this.$emit('loaded', this.data);
         }, 1500);
+        // this.data = res;
       });
 
       // getStars(this.data.)

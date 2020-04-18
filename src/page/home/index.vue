@@ -1,9 +1,11 @@
 <template>
   <div class="home">
-    <home-header></home-header>
-    <home-slide></home-slide>
-    <home-category></home-category>
-    <store></store>
+    <scroll :data="data">
+      <home-header></home-header>
+      <home-slide></home-slide>
+      <home-category></home-category>
+      <store @loaded="storeGeted"></store>
+    </scroll>
   </div>
 </template>
 
@@ -12,17 +14,31 @@
   import HomeCategory from './category';
   import store from './store';
   import HomeSlide from './slide';
+  import scroll from '@/base/scroll';
 
   export default {
     data() {
       return {
+        data: []
       };
     },
     components: {
       HomeHeader,
       HomeCategory,
       store,
-      HomeSlide
+      HomeSlide,
+      scroll
+    },
+    methods: {
+      storeGeted(data) {
+        this.data = data;
+      }
     }
   };
 </script>
+
+<style lang="scss" scoped>
+  .home {
+    height: 100%;
+  }
+</style>

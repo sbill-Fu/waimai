@@ -15,7 +15,7 @@
 
 <script>
   import {getCategory} from '@/api/category.js';
-  import loading from '@/components/loading';
+  import loading from '@/base/loading';
 
   export default {
     data() {

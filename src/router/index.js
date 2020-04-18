@@ -29,6 +29,11 @@ export default new Router({
       path: '/menu',
       name: 'Menu',
       component: () => import('@/page/menu')
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('@/page/test')
     }
   ]
 });
