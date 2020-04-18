@@ -9,7 +9,7 @@
           <p class="header-search-holder">鸡翅</p>
       </div>
     </div>
-    <img class="header-img" :src="headerImg">
+    <!-- <img class="header-img" :src="headerImg"> -->
   </div>
 </template>
 
@@ -17,7 +17,7 @@
   export default {
     data() {
       return {
-        headerImg: require('@/assets/img/header.jpg')
+        // headerImg: require('@/assets/img/header.jpg')
       };
     }
   };
@@ -28,6 +28,7 @@
 
   .header {
     position: relative;
+    background-color: gray;
 
     &-img {
       width: 100%;

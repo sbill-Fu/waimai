@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <home-header></home-header>
+    <home-slide></home-slide>
     <home-category></home-category>
     <store></store>
   </div>
@@ -10,6 +11,7 @@
   import HomeHeader from './header';
   import HomeCategory from './category';
   import store from './store';
+  import HomeSlide from './slide';
 
   export default {
     data() {
@@ -19,7 +21,8 @@
     components: {
       HomeHeader,
       HomeCategory,
-      store
+      store,
+      HomeSlide
     }
   };
 </script>

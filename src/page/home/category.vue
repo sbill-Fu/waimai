@@ -1,17 +1,21 @@
 <template>
   <div class="category-content clearfix">
-    <div class="category-item"
-      v-for="(item, index) in data"
-      :key="'category'+index"
-    >
-      <img :src="item.url" class="category-item-icon">
-      <p class="category-item-name">{{item.name}}</p>
+    <loading></loading>
+    <div class="category-item-wrap">
+      <div class="category-item"
+        v-for="(item, index) in data"
+        :key="'category'+index"
+      >
+        <img :src="item.url" class="category-item-icon">
+        <p class="category-item-name">{{item.name}}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import {getCategory} from '@/api/category.js';
+  import loading from '@/components/loading';
 
   export default {
     data() {
@@ -19,6 +23,9 @@
         data: [],
         name: 'name'
       };
+    },
+    components: {
+      loading
     },
     created() {
       getCategory().then(res => {
