@@ -1,6 +1,6 @@
 <template>
   <div class="category-content clearfix">
-    <loading></loading>
+    <loading v-if="!data.length"></loading>
     <div class="category-item-wrap">
       <div class="category-item"
         v-for="(item, index) in data"
@@ -29,8 +29,10 @@
     },
     created() {
       getCategory().then(res => {
-        this.data = res.splice(0, 8);
-        // console.log('r: ', res);
+        // 模拟请求数据时，等待的时间
+        setTimeout(() => {
+          this.data = res.splice(0, 8);
+        }, 1000);
       });
     }
   };

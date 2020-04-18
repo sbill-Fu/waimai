@@ -6,11 +6,12 @@
       <span class="store-title-line"></span>
     </h4>
     <div class="store-warp">
+      <loading v-if="!data.length"></loading>
       <div class="store-content scale-1px"
         v-for="(item, index) in data"
         :key="'content' + index"
       >
-        <img :src="item.pic_url" class="store-item-img">
+        <img v-lazy="item.pic_url" class="store-item-img">
         <div class="store-brand store-brand-pin" v-if="item.brand_type">品牌</div>
         <div class="store-brand store-brand-xin" v-else>新到</div>
         <div class="store-item-info">
@@ -48,7 +49,7 @@
               v-for="(other, idx) in item.discounts2"
               :key="'other' + idx"
             >
-              <img :src="other.icon_url" class="store-other-tag">
+              <img v-lazy="other.icon_url" class="store-other-tag">
               <div class="store-other-content">{{other.info}}</div>
             </div>
           </div>
@@ -60,6 +61,7 @@
 
 <script>
   import {getContentList} from '@/api/content';
+  import loading from '@/components/loading';
 
   export default {
     data() {
@@ -71,10 +73,14 @@
 
       };
     },
+    components: {
+      loading
+    },
     created() {
       getContentList().then(res => {
-        this.data = res;
-        console.log('content: ', this.data);
+        setTimeout(() => {
+          this.data = res;
+        }, 1500);
       });
 
       // getStars(this.data.)

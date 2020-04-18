@@ -6,7 +6,7 @@
       :data-id="item.id"
       class="menu-item"
     >
-        <img class="img" :src="item.picture" />
+        <img class="img" v-lazy="item.picture" />
         <div class="menu-item-right">
             <p class="item-title">{{item.name}}</p>
             <p class="item-desc two-line">{{item.description}}</p>

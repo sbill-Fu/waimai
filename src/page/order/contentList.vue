@@ -6,7 +6,7 @@
       :key="'order'+index"
     >
         <div class="order-item-inner">
-            <img class="order-img" :src="item.poi_pic" />
+            <img class="order-img" v-lazy="item.poi_pic" />
             <div class="order-right">
                 <div class="order-right-top">
                     <p class="order-name one-line">{{item.poi_name}}</p>
