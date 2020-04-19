@@ -29,7 +29,8 @@
     data() {
       return {
         data: [],
-        firstData: []
+        firstData: [],
+        tabIndex: [] // 如果当前tab已经请求过了，就不需要重复加载数据了
       };
     },
     methods: {
@@ -37,13 +38,11 @@
         // 因为首次加载页面的时候，右边要有值，所以直接请求第一个tab热销的数据
         // 左边点击切换 tab 的时候，如果点击的是第一个tab，就不需要覆盖掉 data 的值了
 
-        // if (index === 0) {
-        //   this.data = this.firstData;
-        // } else {
-        //   this.data = data.spus;
-        // }
-        console.log('right render: ', index);
-        this.data = data.spus;
+        if (this.tabIndex.indexOf(index) > -1) return;
+        this.tabIndex.push(index);
+        this.data.push.apply(this.data, data.spus);
+        console.log('spus: ', data.spus);
+        console.log('data: ', this.data);
       },
       minusCount(e, item) {
         // 点击减号后，将 count 的值减1
