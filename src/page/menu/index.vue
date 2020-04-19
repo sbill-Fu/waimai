@@ -24,6 +24,8 @@
                 ref="right"
                 @minusCount="minusCount"
                 @addCount="addCount"
+                :foodData="foodData"
+                @switchTab="switchLeftTab"
               >
               </right>
         </div>
@@ -67,8 +69,11 @@
         // data.spus[index].chooseCount 这样才可以获取到数量
         // 美团项目中的 food_spu_tags 就是传递到这里的 data
         this.data = data;
-        this.$refs.right.switchTab(data, index);
+        this.$refs.right.switchTab(index);
         this.$refs.rightTitle.innerText = data.name;
+      },
+      switchLeftTab(index) {
+        this.$refs.left.activeIndex(index);
       },
       dealFoodData(data) {
         // left 组件获取到数据后，触发事件的处理函数，为了将数据传递给 shopBar
@@ -152,6 +157,7 @@
   }
   .mask {
     position: absolute;
+    z-index: 50; // 盖住 right 组件的商品，同时又小于底部的 shop-bar
     left: 0;
     right: 0;
     bottom: 0;

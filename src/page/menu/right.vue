@@ -1,48 +1,109 @@
 <template>
-  <div class="right-list-container">
-    <div
-      v-for="(item, index) in data"
-      :key="'right-list'+index"
-      :data-id="item.id"
-      class="menu-item"
+  <swiper :options="swiperOption" ref="swiper">
+    <swiper-slide
+      v-for="(_data, index) in data"
+      :key="'right'+index"
     >
-        <img class="img" v-lazy="item.picture" />
-        <div class="menu-item-right">
-            <p class="item-title">{{item.name}}</p>
-            <p class="item-desc two-line">{{item.description}}</p>
-            <p class="item-zan">{{item.praise_content}}</p>
-            <p class="item-price">{{'￥' + item.min_price}}<span class="unit">/{{item.unit}}</span></p>
+      <div class="right-list-container">
+        <div
+          v-for="(item, idx) in _data"
+          :key="'right-list'+idx"
+          :data-id="item.id"
+          class="menu-item"
+        >
+            <img class="img" v-lazy="item.picture" />
+            <div class="menu-item-right">
+                <p class="item-title">{{item.name}}</p>
+                <p class="item-desc two-line">{{item.description}}</p>
+                <p class="item-zan">{{item.praise_content}}</p>
+                <p class="item-price">{{'￥' + item.min_price}}<span class="unit">/{{item.unit}}</span></p>
+            </div>
+            <div class="select-content">
+                <div @click="minusCount($event, item)" class="minus"></div>
+                <div ref="chooseCount" class="count">{{item.chooseCount ? item.chooseCount : 0}}</div>
+                <div @click="plusCount($event, item)" class="plus"></div>
+            </div>
         </div>
-        <div class="select-content">
-            <div @click="minusCount($event, item)" class="minus"></div>
-            <div ref="chooseCount" class="count">{{item.chooseCount ? item.chooseCount : 0}}</div>
-            <div @click="plusCount($event, item)" class="plus"></div>
-        </div>
-    </div>
-  </div>
+      </div>
+    </swiper-slide>
+  </swiper>
 </template>
 
 <script>
   // import {getFoodList} from '@/api/menu.js';
+  import {swiper, swiperSlide} from 'vue-awesome-swiper';
+  import 'swiper/dist/css/swiper.css';
+  import scroll from '@/base/scroll';
 
   export default {
     data() {
       return {
         data: [],
-        firstData: [],
-        tabIndex: [] // 如果当前tab已经请求过了，就不需要重复加载数据了
+        tabIndex: [], // 如果当前tab已经请求过了，就不需要重复加载数据了
+        swiperOption: {},
+        activeIndex: -1
       };
     },
+    components: {
+      scroll,
+      swiper,
+      swiperSlide
+    },
+    props: {
+      foodData: {
+        type: [Array, Object],
+        default: () => []
+      }
+    },
+    watch: {
+      foodData(data) {
+        // data 是个对象
+        // data.food_spu_tags 是个数组，元素是对象
+        // data.food_spu_tags.spus 是数组
+        data.food_spu_tags.forEach((item) => this.data.push(item.spus));
+      }
+    },
+    created() {
+      this.init();
+    },
     methods: {
-      switchTab(data, index) {
+      init() {
+        this.swiperOption = {
+          direction: 'vertical',
+          slidesPerView: 'auto',
+          freeMode: true,
+          setWrapperSize: true,
+          scrollbar: {
+            el: '.swiper-scrollbar',
+            hide: true
+          },
+          on: {
+            sliderMove: this.scroll,
+            transitionEnd: this.transitionEnd
+          }
+        };
+      },
+      transitionEnd() {
+        // 由于滑动时会有惯性，因为惯性滑动的距离是不会被 sliderMove 监听到的
+        // 所以在停止滑动的时候，再判断滚动条的位置
+        const swiper = this.$refs.swiper.swiper;
+        if (this.activeIndex === swiper.activeIndex) return;
+        this.activeIndex = swiper.activeIndex;
+        this.$emit('switchTab', swiper.activeIndex);
+      },
+      scroll() {
+        const swiper = this.$refs.swiper.swiper;
+        // console.log(swiper.translate);
+        // console.log('indexpre: ', swiper.activeIndex);
+        if (this.activeIndex === swiper.activeIndex) return;
+        this.activeIndex = swiper.activeIndex;
+        this.$emit('switchTab', swiper.activeIndex);
+      },
+      switchTab(index) {
         // 因为首次加载页面的时候，右边要有值，所以直接请求第一个tab热销的数据
         // 左边点击切换 tab 的时候，如果点击的是第一个tab，就不需要覆盖掉 data 的值了
-
-        if (this.tabIndex.indexOf(index) > -1) return;
-        this.tabIndex.push(index);
-        this.data.push.apply(this.data, data.spus);
-        console.log('spus: ', data.spus);
-        console.log('data: ', this.data);
+        this.$refs.swiper.swiper.slideTo(index);
+        this.activeIndex = index;
       },
       minusCount(e, item) {
         // 点击减号后，将 count 的值减1
@@ -71,6 +132,24 @@
 </script>
 
 <style lang="scss" scoped>
+  // 这个将滚动条去掉的样式没有生效
+  ::-webkit-scrollbar {
+    display:none
+  }
+
+  .swiper-container {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    height: auto;
+  }
+
+  // .right-list-container {
+  //   height: 100%;
+  // }
   .menu-item {
     display: flex;
     padding-top: 0.6666666667rem;

@@ -39,14 +39,12 @@
       getFoodList().then(res => {
         this.data = res.food_spu_tags;
         this.$emit('foodDataGeted', res); // 触发事件，让父组件传值给 shopBar 渲染模板
-        console.log('left has get data');
         this.changeMenuTab('_', 0, this.data[0]);
       });
     },
     methods: {
       changeMenuTab(e, index, item) {
-        if (index === this.itemIndex) return; // 如果点击的项目已经显示了，就不用执行下面的代码了
-        this.itemIndex = index; // itemIndex 和 index 相等的话，就添加类 active
+        this.activeIndex(index);
         this.$emit('switch-tab', item, index); // 触发事件，最终交给 right 组件渲染模板的
       },
       clearCart() {
@@ -60,6 +58,10 @@
           });
         });
         this.$emit('clearedcart');
+      },
+      activeIndex(index) {
+        // itemIndex 和 index 相等的话，就添加类 active
+        this.itemIndex = index;
       }
     }
   };
