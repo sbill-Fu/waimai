@@ -54,7 +54,7 @@
   .swiper-container {
     width: 100%;
     height: 250px;
-    padding-top: 42px;
+    padding-top: 1px;
 
     .slide-img {
       width: 100%;

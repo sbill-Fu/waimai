@@ -28,7 +28,9 @@
 
   .header {
     position: relative;
-    background-color: gray;
+    background-color: lightgray;
+    // overflow: hidden;
+    height: 50px;
 
     &-img {
       width: 100%;

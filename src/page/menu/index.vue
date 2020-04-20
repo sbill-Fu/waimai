@@ -104,6 +104,10 @@
 </script>
 
 <style lang="scss" scoped>
+  .menu-container {
+    height: 100%;
+    overflow: hidden;
+  }
   .nav {
     height: 64px;
     border-bottom: 1px solid #b2b2b2;
