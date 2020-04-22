@@ -10,6 +10,7 @@
       <div class="store-content scale-1px"
         v-for="(item, index) in data"
         :key="'content' + index"
+        @click="toMenu"
       >
         <img v-lazy="item.pic_url" class="store-item-img">
         <div class="store-brand store-brand-pin" v-if="item.brand_type">品牌</div>
@@ -113,6 +114,9 @@
       },
       testCall() {
         console.log('call');
+      },
+      toMenu() {
+        this.$router.push('./menu');
       }
     }
   };

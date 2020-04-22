@@ -11,36 +11,28 @@
       <div class="tab-icon"></div>
       <div class="btn-name">{{item.text}}</div>
     </router-link>
+    <router-link class="btn-item home" to="/index">
+      <i class="iconfont icon-home"></i>
+      <span class="btn-name">首页</span>
+    </router-link>
+    <router-link class="btn-item order" to="/order">
+      <i class="iconfont icon-order"></i>
+      <span class="btn-name">订单</span>
+    </router-link>
+    <router-link class="btn-item my" to="/my">
+      <i class="iconfont icon-personal"></i>
+      <span class="btn-name">我的</span>
+    </router-link>
   </div>
 
 </template>
 
-<script>
-  export default {
-    data() {
-      return {
-        data: [
-          {
-            key: 'index',
-            text: '首页'
-          },
-          {
-            key: 'order',
-            text: '订单'
-          },
-          {
-            key: 'my',
-            text: '我的'
-          }
-        ]
-      };
-    }
-  };
-</script>
-
 <style lang="scss" scoped>
+  .iconfont  {
+    font-size: 25px;
+  }
   .router-link-active {
-    color: #000 !important;
+    color: red !important;
   }
   .bottom-bar {
     position: fixed;
@@ -71,23 +63,4 @@
   .bottom-bar .btn-item.active {
     color: #000;
   }
-  .bottom-bar .btn-item.my.active .tab-icon {
-    background-image: url("./img/myIconActive.png");
-  }
-  .bottom-bar .btn-item.my .tab-icon {
-    background-image: url("./img/myIcon.png");
-  }
-  .bottom-bar .btn-item.order .tab-icon {
-    background-image: url("./img/orderIcon.png");
-  }
-  .bottom-bar .btn-item.order.active .tab-icon {
-    background-image: url("./img/orderIconActive.png");
-  }
-  .bottom-bar .btn-item.index .tab-icon {
-    background-image: url("./img/homeIcon.png");
-  }
-  .bottom-bar .btn-item.index.active .tab-icon {
-    background-image: url("./img/homeIconActive.png");
-  }
-
 </style>

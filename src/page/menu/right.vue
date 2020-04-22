@@ -5,8 +5,9 @@
       :key="'right'+index"
     >
       <div class="right-list-container">
+        <h4 class="right-title">{{titles[index]}}</h4>
         <div
-          v-for="(item, idx) in _data"
+          v-for="(item, idx) in _data.spus"
           :key="'right-list'+idx"
           :data-id="item.id"
           class="menu-item"
@@ -19,9 +20,9 @@
                 <p class="item-price">{{'￥' + item.min_price}}<span class="unit">/{{item.unit}}</span></p>
             </div>
             <div class="select-content">
-                <div @click="minusCount($event, item)" class="minus"></div>
+                <div @click="minusCount($event, item)" class="iconfont icon-minus"></div>
                 <div ref="chooseCount" class="count">{{item.chooseCount ? item.chooseCount : 0}}</div>
-                <div @click="plusCount($event, item)" class="plus"></div>
+                <div @click="plusCount($event, item)" class="iconfont icon-plus"></div>
             </div>
         </div>
       </div>
@@ -39,9 +40,9 @@
     data() {
       return {
         data: [],
-        tabIndex: [], // 如果当前tab已经请求过了，就不需要重复加载数据了
         swiperOption: {},
-        activeIndex: -1
+        activeIndex: -1,
+        titles: ['热销', '折扣', '新品']
       };
     },
     components: {
@@ -60,7 +61,8 @@
         // data 是个对象
         // data.food_spu_tags 是个数组，元素是对象
         // data.food_spu_tags.spus 是数组
-        data.food_spu_tags.forEach((item) => this.data.push(item.spus));
+        data.food_spu_tags.forEach((item) => this.data.push(item));
+        // console.log(data.food_spu_tags);
       }
     },
     created() {
@@ -132,9 +134,12 @@
 </script>
 
 <style lang="scss" scoped>
-  // 这个将滚动条去掉的样式没有生效
-  ::-webkit-scrollbar {
-    display:none
+  .icon-minus {
+    font-size: 25px;
+  }
+  .icon-plus {
+    font-size: 23px;
+    padding-top: 2px;
   }
 
   .swiper-container {
@@ -147,9 +152,16 @@
     height: auto;
   }
 
-  // .right-list-container {
-  //   height: 100%;
-  // }
+  .right-list-container {
+    position: relative;
+
+    .right-title {
+      font-size: 14px;
+      font-weight: normal;
+      padding-top: 6px;
+    }
+  }
+
   .menu-item {
     display: flex;
     padding-top: 0.6666666667rem;
@@ -193,18 +205,6 @@
     right: 0.24rem;
     bottom: 0.56rem;
     display: flex;
-  }
-  .menu-item .plus {
-    width: 0.6666666667rem;
-    height: 0.6666666667rem;
-    background-size: 100% 100%;
-    background-image: url("./img/plus.png");
-  }
-  .menu-item .minus {
-    width: 0.6666666667rem;
-    height: 0.6666666667rem;
-    background-size: 100% 100%;
-    background-image: url("./img/minus.png");
   }
   .menu-item .count {
     font-size: 0.4rem;

@@ -2,7 +2,7 @@
   <div class="menu-container">
   <!--头部开始-->
     <div class="nav">
-        <div @click="backHome" class="back-icon"></div>
+        <i @click="backHome" class="iconfont icon-left-arrow"></i>
         <h4 class="title">深圳麦当劳前海二餐厅</h4>
     </div>
     <!--头部结束-->
@@ -19,7 +19,7 @@
           @clearedcart="updateRight"
         ></left>
         <div class="right-content">
-            <p ref="rightTitle" class="right-title">热销</p>
+            <!-- <p ref="rightTitle" class="right-title">热销</p> -->
               <right
                 ref="right"
                 @minusCount="minusCount"
@@ -70,10 +70,12 @@
         // 美团项目中的 food_spu_tags 就是传递到这里的 data
         this.data = data;
         this.$refs.right.switchTab(index);
-        this.$refs.rightTitle.innerText = data.name;
+        // this.$refs.rightTitle.innerText = data.name;
+        // console.log(data);
       },
       switchLeftTab(index) {
         this.$refs.left.activeIndex(index);
+        // this.$refs.rightTitle.innerText = this.foodData.food_spu_tags[index].name;
       },
       dealFoodData(data) {
         // left 组件获取到数据后，触发事件的处理函数，为了将数据传递给 shopBar
@@ -109,6 +111,7 @@
     overflow: hidden;
   }
   .nav {
+    display: flex;
     height: 64px;
     border-bottom: 1px solid #b2b2b2;
     position: fixed;
@@ -116,22 +119,32 @@
     top: 0;
     z-index: 99;
     background-color: #fff;
+
+    .icon-left-arrow {
+      line-height: 64px;
+      padding-left: 4px;
+      font-size: 20px;
+    }
+
+    .title {
+      display: inline-block;
+      flex: 1;
+      align-items: center;
+      font-size: 17px;
+      color: #2f2f2f;
+      text-align: center;
+      line-height: 64px;
+    }
   }
-  .nav .title {
-    font-size: 17px;
-    color: #2f2f2f;
-    text-align: center;
-    line-height: 73px;
-  }
-  .nav .back-icon {
-    width: 27px;
-    height: 27px;
-    position: absolute;
-    top: 23px;
-    left: 10px;
-    background-image: url("./img/back.png");
-    background-size: cover;
-  }
+  // .nav .back-icon {
+  //   width: 27px;
+  //   height: 27px;
+  //   position: absolute;
+  //   top: 23px;
+  //   left: 10px;
+  //   background-image: url("./img/back.png");
+  //   background-size: cover;
+  // }
 
   .menu-inner {
     position: absolute;

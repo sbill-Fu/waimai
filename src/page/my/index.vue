@@ -9,18 +9,22 @@
         <div class="personal-content">
             <ul class="personal-content-items">
                 <li class="personal-content-address">
-                    收货地址管理
+                  <i class="iconfont icon-location"></i>
+                    <span class="item-text">收货地址管理</span>
                 </li>
                 <li class="personal-content-money">
-                    商家代金券
+                  <i class="iconfont icon-discount"></i>
+                    <span class="item-text">商家代金券</span>
                 </li>
             </ul>
             <ul class="personal-content-items">
                 <li class="personal-content-email">
-                    意见反馈
+                  <i class="iconfont icon-feedback"></i>
+                    <span class="item-text">意见反馈</span>
                 </li>
                 <li class="personal-content-question">
-                    常见问题
+                  <i class="iconfont icon-problem"></i>
+                    <span class="item-text">常见问题</span>
                 </li>
             </ul>
             <p class="personal-tel">客服电话:&nbsp;101-097-77</p>
@@ -70,21 +74,33 @@
       padding-left: 26px;
       margin-left: 15px;
       border-bottom: 1px solid #e4e4e4;
+
+      .iconfont {
+        display: inline-block;
+        width: 25px;
+      }
+      .icon-location {
+        font-size: 20px;
+      }
+      .icon-discount {
+        font-size: 14px;
+      }
+      .icon-feedback {
+        font-size: 24px;
+        vertical-align: -3px;
+      }
+      .icon-problem {
+        font-size: 22px;
+        vertical-align: -3px;
+      }
+      .item-text {
+        display: inline-block;
+        height: 45px;
+        line-height: 45px;
+      }
     }
     &-content-items li:last-child {
       border: none;
-    }
-    &-content-items li:before {
-      content: '';
-      display: block;
-      width: 16px;
-      height: 16px;
-      position: absolute;
-      top: 50%;
-      left: 1px;
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-      background-size: cover;
     }
     &-content-items li:after {
       content: '>';
@@ -95,18 +111,6 @@
       top: 0;
       right: 9px;
       color: #aaa;
-    }
-    &-content-items .personal-content-address:before {
-      background-image: url("./img/address.png");
-    }
-    &-content-items .personal-content-money:before {
-      background-image: url("./img/money.png");
-    }
-    &-content-items .personal-content-email:before {
-      background-image: url("./img/email.png");
-    }
-    &-content-items .personal-content-question:before {
-      background-image: url("./img/question.png");
     }
     &-tel {
       font-size: 15px;

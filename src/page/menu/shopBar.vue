@@ -14,16 +14,16 @@
           <div class="item-name">{{item.name}}</div>
           <div class="price">¥<span class="total">{{getPrice(item)}}</span></div>
           <div class="select-content">
-              <div @click="selfMinusCount(item, item.chooseCount)" class="minus"></div>
+              <div @click="selfMinusCount(item, item.chooseCount)" class="iconfont icon-minus"></div>
               <div ref="chooseCount" class="count">{{item.chooseCount}}</div>
-              <div @click="selfAddCount(item, item.chooseCount)" class="plus"></div>
+              <div @click="selfAddCount(item, item.chooseCount)" class="iconfont icon-plus"></div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="bottom-content">
-        <div @click="toggleTop" class="shop-icon">
+        <div @click="toggleTop" class="iconfont icon-cart">
             <div v-show="showNum" class="dot-num" >{{showNum}}</div>
         </div>
         <div class="price-content">
@@ -113,6 +113,12 @@
 </script>
 
 <style lang="scss" scoped>
+  .icon-minus {
+    font-size: 25px;
+  }
+  .icon-plus {
+    font-size: 22px;
+  }
   .shop-bar {
     position: absolute;
     bottom: 0;
@@ -125,15 +131,25 @@
     display: flex;
     background-color: rgba(51, 51, 51, 0.9);
   }
-  .shop-bar .shop-icon {
+  .icon-cart {
+    font-size: 40px;
+    background: rgb(255, 209, 97);
     width: 55px;
-    height: 56px;
-    background-image: url("./img/shop-icon.png");
-    background-size: cover;
-    margin-top: -15px;
-    margin-left: 12px;
+    height: 55px;
+    padding-left: 7px;
+    padding-top: 4px;
+    border-radius: 55px;
     position: relative;
   }
+  // .shop-bar .shop-icon {
+  //   width: 55px;
+  //   height: 56px;
+  //   background-image: url("./img/shop-icon.png");
+  //   background-size: cover;
+  //   margin-top: -15px;
+  //   margin-left: 12px;
+  //   position: relative;
+  // }
   .shop-bar .price-content {
     flex: 1;
     padding-top: 8px;
@@ -220,18 +236,18 @@
     display: flex;
     margin-right: 8px;
   }
-  .shop-bar .plus {
-    width: 25px;
-    height: 25px;
-    background-size: 100% 100%;
-    background-image: url("./img/plus.png");
-  }
-  .shop-bar .minus {
-    width: 25px;
-    height: 26px;
-    background-size: 100% 100%;
-    background-image: url("./img/minus.png");
-  }
+  // .shop-bar .plus {
+  //   width: 25px;
+  //   height: 25px;
+  //   background-size: 100% 100%;
+  //   background-image: url("./img/plus.png");
+  // }
+  // .shop-bar .minus {
+  //   width: 25px;
+  //   height: 26px;
+  //   background-size: 100% 100%;
+  //   background-image: url("./img/minus.png");
+  // }
   .shop-bar .count {
     font-size: 15px;
     color: #2f2f2f;
