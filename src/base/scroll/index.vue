@@ -25,7 +25,6 @@
     watch: {
       data() {
         this.$refs.swiper.swiper.update();
-        console.log('swiper update');
       }
     },
     created() {
@@ -45,8 +44,35 @@
           scrollbar: {
             el: '.swiper-scrollbar',
             hide: true
+          },
+          on: {
+            sliderMove: this.scroll,
+            transitionEnd: this.transitionEnd
           }
         };
+      },
+      scroll() {
+        const swiper = this.$refs.swiper.swiper;
+        if ((-swiper.translate) > swiper.height) {
+          this.$emit('showTopIcon');
+        } else {
+          this.$emit('hideTopIcon');
+        }
+      },
+      transitionEnd() {
+        const swiper = this.$refs.swiper.swiper;
+        if ((-swiper.translate) > swiper.height) {
+          this.$emit('showTopIcon');
+          setTimeout(() => {
+            this.$emit('hideTopIcon');
+          }, 3000);
+        } else {
+          this.$emit('hideTopIcon');
+        }
+      },
+      backToTop() {
+        const swiper = this.$refs.swiper.swiper;
+        swiper.slideTo(0, 500);
       }
     }
   };

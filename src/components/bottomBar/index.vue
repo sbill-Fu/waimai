@@ -1,16 +1,5 @@
 <template>
   <div class="bottom-bar">
-    <router-link
-      v-for="(item, index) in data"
-      :key="'bottom'+index"
-      class="btn-item"
-      :class="item.key"
-      :href="item.key+'.html'"
-      :to="'/'+item.key"
-    >
-      <div class="tab-icon"></div>
-      <div class="btn-name">{{item.text}}</div>
-    </router-link>
     <router-link class="btn-item home" to="/index">
       <i class="iconfont icon-home"></i>
       <span class="btn-name">首页</span>
