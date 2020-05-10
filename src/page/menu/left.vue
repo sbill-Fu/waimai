@@ -48,7 +48,8 @@
         this.$emit('switch-tab', item, index); // 触发事件，最终交给 right 组件渲染模板的
       },
       clearCart() {
-        console.log('left start clear');
+        // 底部组件清空购物车的时候，需要将数据中的所有 chooseCount = 0，因为数据是在这个组件获取的
+        // 怀疑由 点击加载 改成 点击跳转 之后，这个不需要了？
         this.data.forEach(item => {
           item.spus.forEach(_item => {
             if (_item.chooseCount > 0) {

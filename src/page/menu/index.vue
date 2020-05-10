@@ -36,7 +36,7 @@
           @updateRight="updateRight"
           @clearCart="clearCart"
         ></shop-bar>
-        <div v-if="showMask" class="mask"></div>
+        <div v-if="showMask" class="mask" @click="toggleBottom"></div>
     </div>
   </div>
 </template>
@@ -87,10 +87,12 @@
       },
       addCount(item, preChooseNum) {
         this.$refs.shopBar.addCount(item, preChooseNum);
-        // this.$refs.left.clearCart();
       },
       toggleTop() {
         this.showMask = !this.showMask;
+      },
+      toggleBottom() {
+        this.$refs.shopBar.toggleTop();
       },
       updateRight() {
         this.$refs.right.forceUpdate();
